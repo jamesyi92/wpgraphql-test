@@ -1,46 +1,32 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { GlobalStyle } from '../utils/GlobalStyle'
+import { ThemeProvider } from 'styled-components'
+import { visierTheme, anotherTheme } from '../utils/themes'
 
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import '../scss/main.scss'
 
-import Header from "./header"
-import "./layout.css"
+import Header from './header'
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+
+  const storedValue = localStorage.getItem('isVisierTheme');
+  const [isVisierTheme, setIsVisierTheme] = useState(storedValue === 'true' ? true : false);
+
+  const toggleTheme = () => {
+    setIsVisierTheme(!isVisierTheme);
+    localStorage.setItem('isVisierTheme', !isVisierTheme);
+    console.log('clicked');
+  }
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </>
+    <ThemeProvider theme={ isVisierTheme ? visierTheme : anotherTheme }>
+      <>
+        <GlobalStyle />
+        <Header toggleTheme={ toggleTheme } />
+        <main>{ children }</main>
+      </>
+    </ThemeProvider>
   )
 }
 

@@ -1,34 +1,31 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Navbar, NavbarBrand, Container } from 'reactstrap'
+import styled from 'styled-components'
+import Button from '../components/Button';
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
+const StyledHeader = styled.header`
+  padding: 3rem 0;
+  
+  .navbar {
+    padding: 0;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+  }
+`
+
+const Header = ({ toggleTheme }) => (
+  <StyledHeader>
+    <Container>
+      <Navbar>
+        <Link className="logo" to="/">Visier WPGraphQL</Link>
+        <Button onClick={ () =>  toggleTheme() }>Toggle Theme</Button>
+      </Navbar>
+    </Container>
+  </StyledHeader>
 )
 
 Header.propTypes = {

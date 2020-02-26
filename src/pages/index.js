@@ -1,21 +1,63 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
+import styled from 'styled-components'
+import { Container, Row, Col } from 'reactstrap'
 
 import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const StyledFeedItem = styled.div`
+
+  padding: 3rem;
+  background: ${props => props.theme.primaryBg};
+  color: ${props => props.theme.primaryColor};
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+
+  h3 {
+    font-size: 2.4rem;
+  }
+
+  a {
+    font-size: 16px;
+  }
+`
+
+const IndexPage = ({ data }) => {
+console.log(data.wp.customPages.edges)
+  return(
+    <Layout>
+      <Container>
+        {
+          data.wp.customPages.edges.map((page, i) => {
+            return (
+              <StyledFeedItem key={i}>
+                <h3>{page.node.title}</h3>
+                <Link to={page.node.slug}>See Page</Link>
+              </StyledFeedItem>
+            )
+          })
+        }
+      </Container>
+    </Layout>
+  )
+}
 
 export default IndexPage
+
+export const pagequery = graphql`
+  {
+    wp {
+      customPages {
+        edges {
+          node {
+            slug
+            uri
+            title
+          }
+        }
+      }
+    }
+  }
+`
