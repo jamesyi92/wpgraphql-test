@@ -10,12 +10,12 @@ import Header from './header'
 
 const Layout = ({ children }) => {
 
-  const storedValue = localStorage.getItem('isVisierTheme');
-  const [isVisierTheme, setIsVisierTheme] = useState(storedValue === 'true' ? true : false);
+  //const storedValue = localStorage.getItem('isVisierTheme');
+  const [isVisierTheme, setIsVisierTheme] = useState(true);
 
   const toggleTheme = () => {
     setIsVisierTheme(!isVisierTheme);
-    localStorage.setItem('isVisierTheme', !isVisierTheme);
+    //localStorage.setItem('isVisierTheme', !isVisierTheme);
     console.log('clicked');
   }
 
