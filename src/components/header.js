@@ -1,9 +1,8 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Navbar, NavbarBrand, Container } from 'reactstrap'
+import { Navbar, Container } from 'reactstrap'
 import styled from 'styled-components'
-import Button from '../components/Button';
 
 const StyledHeader = styled.header`
   padding: 3rem 0;
@@ -17,12 +16,11 @@ const StyledHeader = styled.header`
   }
 `
 
-const Header = ({ toggleTheme }) => (
+const Header = () => (
   <StyledHeader>
     <Container>
       <Navbar>
         <Link className="logo" to="/">Visier WPGraphQL</Link>
-        <Button onClick={ () =>  toggleTheme() }>Toggle Theme</Button>
       </Navbar>
     </Container>
   </StyledHeader>
