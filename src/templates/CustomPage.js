@@ -10,6 +10,8 @@ const CustomPage = (props) => {
   
   return(
     <Layout>
+    <>
+      <h1>Custom Page Header</h1>
         {
             section.map((section,i) => {
               
@@ -28,6 +30,7 @@ const CustomPage = (props) => {
 
             })
         }
+        </>
     </Layout>
   )
 }

@@ -4,6 +4,6 @@ export const visierTheme = {
 }
 
 export const anotherTheme = {
-  'primaryColor': '#212121',
+  'primaryColor': 'yellow',
   'primaryBg': '#f2f2f2',
 }
