@@ -29,6 +29,7 @@ console.log(data.wp.customPages.edges)
   return(
     <Layout>
       <Container>
+        <h1>This is coming from dev</h1>
         {
           data.wp.customPages.edges.map((page, i) => {
             return (
